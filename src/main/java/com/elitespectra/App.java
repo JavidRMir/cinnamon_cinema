@@ -1,26 +1,35 @@
 package com.elitespectra;
 
+import java.util.List;
+import java.util.Random;
+
 public class App {
 
     public static void main(String[] args) {
 
         Booking booking = new Booking();
 
-        System.out.println(booking.getAvailableSeats());
+        var bookingNameList = List.of(
+                "John", "Mary", "Lucy", "Steve", "Peter", "Ann");
 
-        booking.allocateSeats("John Doe", 3);
-        System.out.println(booking.getBOOKED_SEATS());
-        System.out.println(booking.getBOOKED_SEATS());
+        int numberOfSeats;
+        int bookingNameIndex;
 
+        while (booking.getAvailableSeats().size() > 0) {
 
-        System.out.println(booking.getAvailableSeats());
-        booking.allocateSeats("Mary Doe", 3);
-        System.out.println(booking.getBOOKED_SEATS());
+            bookingNameIndex = new Random().nextInt(bookingNameList.size());
+            numberOfSeats = new Random().nextInt(3) + 1;
 
-        System.out.println(booking.getAvailableSeats());
-        booking.allocateSeats("Lucy", 3);
-        System.out.println(booking.getBOOKED_SEATS());
+            try {
+                booking.allocateSeats(bookingNameList.get(bookingNameIndex), numberOfSeats);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                break;
+            }
 
+        }
+
+        System.out.println("Seats Booked: " + booking.getBOOKED_SEATS());
 
     }
 }
