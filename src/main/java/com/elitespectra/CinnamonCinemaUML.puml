@@ -1,0 +1,14 @@
+@startuml
+
+class Booking {
+    - List<String> SEATS
+    - final Map<String, String> BOOKED_SEATS
+
+    + Booking()
+    + void reset()
+    + void allocateSeats()
+    + List<String> getAvailableSeats()
+    + Map<String, String> getBOOKED_SEATS()
+}
+
+@enduml
